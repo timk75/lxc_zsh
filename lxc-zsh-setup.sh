@@ -125,9 +125,9 @@ alias ls='eza --icons'
 ### Shell Integrations & Final Evals ###
 # These should generally come at the end of the file.
 
-# Oh My Posh
+# Oh My Posh - Tokyo Night Storm theme
 if [ "$TERM_PROGRAM" != "Apple_Terminal" ]; then
-  eval "$(oh-my-posh init zsh --config ~/.config/oh-my-posh/powerlevel10k_lean.omp.json)"
+  eval "$(oh-my-posh init zsh --config ~/.config/oh-my-posh/tokyo-night-storm.omp.json)"
 fi
 
 # Other tools
@@ -136,10 +136,10 @@ eval "$(fzf --zsh)"
 eval "$(thefuck --alias)"
 ZSHRC_EOF
 
-# Download oh-my-posh theme
-echo_info "Setting up oh-my-posh theme..."
+# Download oh-my-posh Tokyo Night Storm theme
+echo_info "Setting up oh-my-posh Tokyo Night Storm theme..."
 mkdir -p ~/.config/oh-my-posh
-curl -s https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/powerlevel10k_lean.omp.json -o ~/.config/oh-my-posh/powerlevel10k_lean.omp.json
+curl -s https://raw.githubusercontent.com/timk75/lxc_zsh/main/tokyo-night-storm.omp.json -o ~/.config/oh-my-posh/tokyo-night-storm.omp.json
 
 # Change default shell to ZSH
 echo_info "Changing default shell to ZSH..."
