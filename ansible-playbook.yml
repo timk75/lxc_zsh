@@ -1,0 +1,30 @@
+---
+# Ansible playbook to deploy ZSH setup to multiple LXC containers
+# Usage: ansible-playbook -i inventory.ini --ask-vault-pass ansible-playbook.yml
+# Or with vault password file: ansible-playbook -i inventory.ini --vault-password-file=.vault_pass ansible-playbook.yml
+
+- name: Setup ZSH on LXC containers
+  hosts: lxc_containers
+  become: yes
+  vars_files:
+    - secrets.yml
+  tasks:
+    - name: Copy ZSH setup script
+      copy:
+        src: ./lxc-zsh-setup.sh
+        dest: /tmp/lxc-zsh-setup.sh
+        mode: '0755'
+
+    - name: Run ZSH setup script
+      shell: /tmp/lxc-zsh-setup.sh
+      args:
+        creates: /root/.zshrc
+
+    - name: Clean up script
+      file:
+        path: /tmp/lxc-zsh-setup.sh
+        state: absent
+
+    - name: Display completion message
+      debug:
+        msg: "ZSH setup complete on {{ inventory_hostname }}. Users should run 'exec zsh' on next login."

@@ -1,0 +1,38 @@
+# Ansible sensitive files
+secrets.yml
+.vault_pass
+*.vault
+
+# Ansible runtime files
+*.retry
+.ansible/
+
+# Per-host encrypted credentials (only if you want to exclude them)
+# Uncomment if you don't want to commit encrypted host_vars
+# host_vars/*.yml
+
+# Actual inventory (keep the example, ignore the real one with IPs)
+inventory.ini
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Thumbnails
+._*
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Logs
+*.log
+
+# Temporary files
+tmp/
+temp/
+*.tmp

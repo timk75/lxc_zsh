@@ -1,0 +1,23 @@
+# Ansible inventory file for LXC containers
+# Copy this to inventory.ini and update with your container IPs/hostnames
+
+[lxc_containers]
+container1 ansible_host=192.168.1.100
+container2 ansible_host=192.168.1.101
+container3 ansible_host=192.168.1.102
+
+# If you have different groups of containers:
+[lxc_dev]
+dev1 ansible_host=192.168.1.110
+
+[lxc_prod]
+prod1 ansible_host=192.168.1.120
+
+# You can also use hostnames if DNS is configured
+# webserver ansible_host=web.local
+
+# Global variables for all containers
+[all:vars]
+# These will be overridden by secrets.yml (encrypted with ansible-vault)
+ansible_user=root
+ansible_connection=ssh
