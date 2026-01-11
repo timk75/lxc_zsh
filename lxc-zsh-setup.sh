@@ -112,7 +112,7 @@ autoload -U compinit && compinit
 zinit cdreplay -q
 
 # Set environment variables
-export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/.fzf/bin:$HOME/.local/bin:$PATH"
 
 ### Aliases ###
 alias vim='nvim'
@@ -127,7 +127,9 @@ eval "$(oh-my-posh init zsh --config ~/.config/oh-my-posh/tokyo-night-storm.omp.
 
 # Other tools
 eval "$(zoxide init zsh)"
-eval "$(fzf --zsh)"
+
+# fzf - source the integration file created by fzf installer
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 ZSHRC_EOF
 
 # Download oh-my-posh Tokyo Night Storm theme
