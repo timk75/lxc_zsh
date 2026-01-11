@@ -126,9 +126,7 @@ alias ls='eza --icons'
 # These should generally come at the end of the file.
 
 # Oh My Posh - Tokyo Night Storm theme
-if [ "$TERM_PROGRAM" != "Apple_Terminal" ]; then
-  eval "$(oh-my-posh init zsh --config ~/.config/oh-my-posh/tokyo-night-storm.omp.json)"
-fi
+eval "$(oh-my-posh init zsh --config ~/.config/oh-my-posh/tokyo-night-storm.omp.json)"
 
 # Other tools
 eval "$(zoxide init zsh)"
