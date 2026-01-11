@@ -1,6 +1,9 @@
 #!/bin/bash
 set -e
 
+# Ensure HOME is set (required for some LXC environments)
+export HOME=${HOME:-/root}
+
 # Colors for output
 RED='\033[0;31m'
 GREEN='\033[0;32m'
@@ -57,7 +60,6 @@ apt-get install -y eza
 
 # Install fzf
 echo_info "Installing fzf..."
-export HOME=${HOME:-/root}
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install --all --no-bash --no-fish
 
