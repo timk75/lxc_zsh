@@ -57,8 +57,9 @@ apt-get install -y eza
 
 # Install fzf
 echo_info "Installing fzf..."
+export HOME=${HOME:-/root}
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-bash -c "cd ~/.fzf && ./install --all --no-bash --no-fish"
+~/.fzf/install --all --no-bash --no-fish
 
 # Install zoxide
 echo_info "Installing zoxide..."
