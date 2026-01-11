@@ -31,18 +31,85 @@ To set this up:
 
 ### Method 3: Ansible Playbook (Best for Multiple Containers)
 
-For deploying to many containers at once:
+For deploying to many containers at once with secure credential management:
 
-1. Copy `inventory.ini.example` to `inventory.ini` and add your container IPs:
+1. **Set up inventory** - Copy and configure your container IPs:
    ```bash
    cp inventory.ini.example inventory.ini
    nano inventory.ini
    ```
 
-2. Run the playbook:
+2. **Set up secrets** - Create and encrypt your credentials:
    ```bash
-   ansible-playbook -i inventory.ini ansible-playbook.yml
+   # Copy the example secrets file
+   cp secrets.yml.example secrets.yml
+
+   # Edit with your actual credentials
+   nano secrets.yml
+
+   # Encrypt it with ansible-vault
+   ansible-vault encrypt secrets.yml
+   # You'll be prompted to create a vault password - remember it!
    ```
+
+3. **Run the playbook**:
+   ```bash
+   # You'll be prompted for your vault password
+   ansible-playbook -i inventory.ini --ask-vault-pass ansible-playbook.yml
+   ```
+
+#### Ansible Vault Tips
+
+**Option 1: Enter password each time (most secure)**
+```bash
+ansible-playbook -i inventory.ini --ask-vault-pass ansible-playbook.yml
+```
+
+**Option 2: Use a password file (more convenient)**
+```bash
+# Create a password file (this will be gitignored)
+echo "your_vault_password" > .vault_pass
+chmod 600 .vault_pass
+
+# Uncomment the vault_password_file line in ansible.cfg
+# Then run without --ask-vault-pass:
+ansible-playbook -i inventory.ini ansible-playbook.yml
+```
+
+**Managing encrypted files:**
+```bash
+# View encrypted file
+ansible-vault view secrets.yml
+
+# Edit encrypted file
+ansible-vault edit secrets.yml
+
+# Change vault password
+ansible-vault rekey secrets.yml
+
+# Decrypt file (not recommended - use edit instead)
+ansible-vault decrypt secrets.yml
+```
+
+#### Per-Host Credentials
+
+If different containers have different passwords, you can use host-specific variable files:
+
+```bash
+# Create a file in host_vars/ named after your host
+nano host_vars/container1.yml
+```
+
+Add credentials:
+```yaml
+ansible_user: root
+ansible_password: specific_password
+```
+
+Encrypt it:
+```bash
+ansible-vault encrypt host_vars/container1.yml
+```
 
 ### Method 4: Manual Deployment
 
