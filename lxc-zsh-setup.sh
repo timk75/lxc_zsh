@@ -122,8 +122,15 @@ alias ls='eza --icons'
 ### Shell Integrations & Final Evals ###
 # These should generally come at the end of the file.
 
-# Oh My Posh - Tokyo Night Storm theme (plain version without Nerd Font icons)
-eval "$(oh-my-posh init zsh --config ~/.config/oh-my-posh/tokyo-night-storm-plain.omp.json)"
+# Oh My Posh - Tokyo Night Storm theme
+# Detect if terminal supports Nerd Fonts and load appropriate theme
+if [[ -n "$KITTY_WINDOW_ID" ]] || [[ -n "$ALACRITTY_SOCKET" ]] || [[ -n "$WEZTERM_EXECUTABLE" ]] || [[ -n "$GHOSTTY_RESOURCES_DIR" ]] || [[ "$TERM_PROGRAM" == "iTerm.app" ]] || [[ "$TERM_PROGRAM" == "WezTerm" ]] || [[ "$TERM_PROGRAM" == "vscode" ]]; then
+  # Terminal supports Nerd Fonts - use icon version
+  eval "$(oh-my-posh init zsh --config ~/.config/oh-my-posh/tokyo-night-storm.omp.json)"
+else
+  # Fallback to plain version without icons (for Proxmox console, basic terminals)
+  eval "$(oh-my-posh init zsh --config ~/.config/oh-my-posh/tokyo-night-storm-plain.omp.json)"
+fi
 
 # Other tools
 eval "$(zoxide init zsh)"
@@ -132,9 +139,10 @@ eval "$(zoxide init zsh)"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 ZSHRC_EOF
 
-# Download oh-my-posh Tokyo Night Storm theme (plain version for console compatibility)
+# Download oh-my-posh Tokyo Night Storm themes (both icon and plain versions)
 echo_info "Setting up oh-my-posh Tokyo Night Storm theme..."
 mkdir -p ~/.config/oh-my-posh
+curl -s https://raw.githubusercontent.com/timk75/lxc_zsh/main/tokyo-night-storm.omp.json -o ~/.config/oh-my-posh/tokyo-night-storm.omp.json
 curl -s https://raw.githubusercontent.com/timk75/lxc_zsh/main/tokyo-night-storm-plain.omp.json -o ~/.config/oh-my-posh/tokyo-night-storm-plain.omp.json
 
 # Change default shell to ZSH

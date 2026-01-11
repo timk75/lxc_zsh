@@ -155,10 +155,10 @@ Store the script in Proxmox's snippet storage:
 - **oh-my-posh** - Modern prompt theme engine with custom **Tokyo Night Storm** theme
   - Pre-configured with Tokyo Night Storm colors (blue, magenta, green, cyan, yellow)
   - Works out of the box without requiring terminal color scheme changes
+  - **Dynamic theme detection**: Automatically uses icon version when SSH'd from terminals with Nerd Fonts (Kitty, Ghostty, Alacritty, WezTerm, iTerm, VSCode), and plain version in basic terminals (Proxmox web console)
 - **zoxide** - Smarter cd command
 - **fzf** - Fuzzy finder
-- **thefuck** - Command corrector
-- **eza** - Modern replacement for ls
+- **eza** - Modern replacement for ls with icon support
 - **neovim** - Modern Vim
 
 ## Configuration Changes from Mac
@@ -176,17 +176,39 @@ The script creates a `.zshrc` adapted for Linux environments:
 ### Kept
 - All ZSH history settings
 - Zinit plugin manager with the same plugins
-- oh-my-posh prompt with custom **Tokyo Night Storm** theme
-- zoxide, fzf, and thefuck integrations
+- oh-my-posh prompt with custom **Tokyo Night Storm** theme (with dynamic icon detection)
+- zoxide and fzf integrations
 - Basic aliases (vim→nvim, c→clear, ls→eza)
+
+### Removed from LXC Version (to keep installation minimal)
+- thefuck (requires Python development dependencies - 65+ packages)
+
+## Theme Switching
+
+The setup automatically detects your terminal capabilities and loads the appropriate theme:
+
+### With Nerd Fonts (Kitty, Ghostty, Alacritty, WezTerm, iTerm, VSCode)
+When you SSH into the container from a modern terminal emulator, you'll see:
+- Beautiful Nerd Font icons for folders, git branches, languages
+- Visual separators and symbols
+- Full icon-based prompt
+
+### Without Nerd Fonts (Proxmox web console, basic terminals)
+In basic terminals, you'll see:
+- Plain text equivalents (e.g., "git:(main) *" instead of icons)
+- Simple ">" prompt instead of arrow icon
+- No empty rectangles or broken characters
+
+Both versions use the same Tokyo Night Storm colors, just with different symbols.
 
 ## Customization
 
 After running the script, you can edit `~/.zshrc` to:
 - Add back any removed features you need (Go, Bun, Fabric, etc.)
 - Add custom aliases
-- Change the oh-my-posh theme
+- Change the oh-my-posh theme (both `.omp.json` files are available)
 - Add additional Zinit plugins
+- Force a specific theme by modifying the oh-my-posh eval line
 
 ## Troubleshooting
 
