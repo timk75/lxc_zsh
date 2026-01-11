@@ -122,8 +122,8 @@ alias ls='eza --icons'
 ### Shell Integrations & Final Evals ###
 # These should generally come at the end of the file.
 
-# Oh My Posh - Tokyo Night Storm theme
-eval "$(oh-my-posh init zsh --config ~/.config/oh-my-posh/tokyo-night-storm.omp.json)"
+# Oh My Posh - Tokyo Night Storm theme (plain version without Nerd Font icons)
+eval "$(oh-my-posh init zsh --config ~/.config/oh-my-posh/tokyo-night-storm-plain.omp.json)"
 
 # Other tools
 eval "$(zoxide init zsh)"
@@ -132,10 +132,10 @@ eval "$(zoxide init zsh)"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 ZSHRC_EOF
 
-# Download oh-my-posh Tokyo Night Storm theme
+# Download oh-my-posh Tokyo Night Storm theme (plain version for console compatibility)
 echo_info "Setting up oh-my-posh Tokyo Night Storm theme..."
 mkdir -p ~/.config/oh-my-posh
-curl -s https://raw.githubusercontent.com/timk75/lxc_zsh/main/tokyo-night-storm.omp.json -o ~/.config/oh-my-posh/tokyo-night-storm.omp.json
+curl -s https://raw.githubusercontent.com/timk75/lxc_zsh/main/tokyo-night-storm-plain.omp.json -o ~/.config/oh-my-posh/tokyo-night-storm-plain.omp.json
 
 # Change default shell to ZSH
 echo_info "Changing default shell to ZSH..."
