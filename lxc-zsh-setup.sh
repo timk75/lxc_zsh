@@ -67,11 +67,6 @@ git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 echo_info "Installing zoxide..."
 curl -sS https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | bash
 
-# Install thefuck
-echo_info "Installing thefuck..."
-apt-get install -y python3-pip
-pip3 install thefuck --break-system-packages 2>/dev/null || pip3 install thefuck
-
 # Install oh-my-posh
 echo_info "Installing oh-my-posh..."
 curl -s https://ohmyposh.dev/install.sh | bash -s
@@ -133,7 +128,6 @@ eval "$(oh-my-posh init zsh --config ~/.config/oh-my-posh/tokyo-night-storm.omp.
 # Other tools
 eval "$(zoxide init zsh)"
 eval "$(fzf --zsh)"
-eval "$(thefuck --alias)"
 ZSHRC_EOF
 
 # Download oh-my-posh Tokyo Night Storm theme
