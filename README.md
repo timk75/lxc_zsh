@@ -152,7 +152,9 @@ Store the script in Proxmox's snippet storage:
   - zsh-completions
   - zsh-autosuggestions
   - zsh-syntax-highlighting
-- **oh-my-posh** - Modern prompt theme engine
+- **oh-my-posh** - Modern prompt theme engine with custom **Tokyo Night Storm** theme
+  - Pre-configured with Tokyo Night Storm colors (blue, magenta, green, cyan, yellow)
+  - Works out of the box without requiring terminal color scheme changes
 - **zoxide** - Smarter cd command
 - **fzf** - Fuzzy finder
 - **thefuck** - Command corrector
@@ -174,7 +176,7 @@ The script creates a `.zshrc` adapted for Linux environments:
 ### Kept
 - All ZSH history settings
 - Zinit plugin manager with the same plugins
-- oh-my-posh prompt (powerlevel10k_lean theme)
+- oh-my-posh prompt with custom **Tokyo Night Storm** theme
 - zoxide, fzf, and thefuck integrations
 - Basic aliases (vim→nvim, c→clear, ls→eza)
 
