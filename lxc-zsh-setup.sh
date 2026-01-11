@@ -63,6 +63,9 @@ echo_info "Installing fzf..."
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install --all --no-bash --no-fish
 
+# Add .local/bin to PATH for the installers
+export PATH="$HOME/.local/bin:$PATH"
+
 # Install zoxide
 echo_info "Installing zoxide..."
 curl -sS https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | bash
@@ -117,14 +120,23 @@ export PATH="$HOME/.fzf/bin:$HOME/.local/bin:$PATH"
 ### Aliases ###
 alias vim='nvim'
 alias c='clear'
-alias ls='eza --icons'
+
+# Detect if terminal supports Nerd Fonts for icons
+if [[ -n "$KITTY_WINDOW_ID" ]] || [[ -n "$ALACRITTY_SOCKET" ]] || [[ -n "$WEZTERM_EXECUTABLE" ]] || [[ -n "$GHOSTTY_RESOURCES_DIR" ]] || [[ "$TERM_PROGRAM" == "iTerm.app" ]] || [[ "$TERM_PROGRAM" == "WezTerm" ]] || [[ "$TERM_PROGRAM" == "vscode" ]]; then
+  # Terminal supports Nerd Fonts - use icons
+  alias ls='eza --icons'
+  export NERD_FONTS=1
+else
+  # Basic terminal - no icons
+  alias ls='eza'
+  export NERD_FONTS=0
+fi
 
 ### Shell Integrations & Final Evals ###
 # These should generally come at the end of the file.
 
 # Oh My Posh - Tokyo Night Storm theme
-# Detect if terminal supports Nerd Fonts and load appropriate theme
-if [[ -n "$KITTY_WINDOW_ID" ]] || [[ -n "$ALACRITTY_SOCKET" ]] || [[ -n "$WEZTERM_EXECUTABLE" ]] || [[ -n "$GHOSTTY_RESOURCES_DIR" ]] || [[ "$TERM_PROGRAM" == "iTerm.app" ]] || [[ "$TERM_PROGRAM" == "WezTerm" ]] || [[ "$TERM_PROGRAM" == "vscode" ]]; then
+if [[ "$NERD_FONTS" == "1" ]]; then
   # Terminal supports Nerd Fonts - use icon version
   eval "$(oh-my-posh init zsh --config ~/.config/oh-my-posh/tokyo-night-storm.omp.json)"
 else
