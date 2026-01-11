@@ -40,11 +40,10 @@ apt-get install -y zsh
 
 # Install basic dependencies
 echo_info "Installing basic dependencies..."
-apt-get install -y curl git wget build-essential unzip
+apt-get install -y curl git wget unzip
 
 # Install Neovim
 echo_info "Installing Neovim..."
-apt-get install -y software-properties-common
 apt-get install -y neovim
 
 # Install eza (modern ls replacement)
@@ -67,7 +66,7 @@ curl -sS https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | 
 
 # Install thefuck
 echo_info "Installing thefuck..."
-apt-get install -y python3-pip python3-dev
+apt-get install -y python3-pip
 pip3 install thefuck --break-system-packages 2>/dev/null || pip3 install thefuck
 
 # Install oh-my-posh
