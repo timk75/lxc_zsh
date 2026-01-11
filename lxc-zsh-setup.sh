@@ -40,7 +40,7 @@ apt-get install -y zsh
 
 # Install basic dependencies
 echo_info "Installing basic dependencies..."
-apt-get install -y curl git wget unzip
+apt-get install -y curl git wget unzip gnupg
 
 # Install Neovim
 echo_info "Installing Neovim..."
