@@ -1,45 +1,29 @@
 # Git Repository Setup
 
-This repository is now initialized and ready to be pushed to a private GitHub repository.
+This repository has been pushed to GitHub at: **git@github.com:timk75/lxc_zsh.git**
 
-## Push to a New GitHub Private Repository
+## Repository Status
 
-### Option 1: GitHub CLI (Recommended)
+The repository is already set up and pushed to GitHub. You can view it at:
+https://github.com/timk75/lxc_zsh
 
+## Quick One-Liner for LXC Containers
+
+Since this is a **private** repository, you have two options for using the one-liner:
+
+### Option 1: Make the repository public (easier)
+If you make the repository public, you can use:
 ```bash
-# Create a private repository on GitHub
-gh repo create lxc-zsh-setup --private --source=. --remote=origin
-
-# Push your code
-git push -u origin main
+curl -fsSL https://raw.githubusercontent.com/timk75/lxc_zsh/main/lxc-zsh-setup.sh | bash
 ```
 
-### Option 2: Manual Setup
-
-1. Create a new private repository on GitHub (https://github.com/new)
-   - Name: `lxc-zsh-setup`
-   - Visibility: **Private**
-   - Don't initialize with README (we already have one)
-
-2. Add the remote and push:
-   ```bash
-   git remote add origin git@github.com:YOUR_USERNAME/lxc-zsh-setup.git
-   git push -u origin main
-   ```
-
-## After Pushing to GitHub
-
-Update the GitHub one-liner in README.md to use your actual repository URL:
-
+### Option 2: Use with authentication (private repo)
+For private repositories, use a personal access token:
 ```bash
-# Replace this line in README.md:
-curl -fsSL https://raw.githubusercontent.com/YOURUSERNAME/YOURREPO/main/lxc-zsh-setup/lxc-zsh-setup.sh | bash
-
-# With your actual URL:
-curl -fsSL https://raw.githubusercontent.com/YOUR_USERNAME/lxc-zsh-setup/main/lxc-zsh-setup.sh | bash
+curl -fsSL -H "Authorization: token YOUR_GITHUB_TOKEN" https://raw.githubusercontent.com/timk75/lxc_zsh/main/lxc-zsh-setup.sh | bash
 ```
 
-**Note:** For private repositories, you'll need to authenticate or use a personal access token in the URL.
+To create a token: https://github.com/settings/tokens
 
 ## Working with Secrets
 

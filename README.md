@@ -16,18 +16,14 @@ The easiest way to deploy to a single container:
 
 ### Method 2: GitHub One-Liner (Best for Quick Setup)
 
-If you host this on GitHub, you can run it directly on any LXC container:
+Run the setup directly on any LXC container without copying files:
 
 ```bash
 # On the LXC container, run:
-curl -fsSL https://raw.githubusercontent.com/YOURUSERNAME/YOURREPO/main/lxc-zsh-setup/lxc-zsh-setup.sh | bash
+curl -fsSL https://raw.githubusercontent.com/timk75/lxc_zsh/main/lxc-zsh-setup.sh | bash
 ```
 
-To set this up:
-1. Create a GitHub repository
-2. Push this folder to the repo
-3. Update the URL in the command above
-4. Run the one-liner on any container
+This will automatically download and execute the setup script.
 
 ### Method 3: Ansible Playbook (Best for Multiple Containers)
 
