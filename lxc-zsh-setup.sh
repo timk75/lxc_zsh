@@ -60,7 +60,12 @@ apt-get install -y eza
 
 # Install fzf
 echo_info "Installing fzf..."
-git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+if [ -d ~/.fzf ]; then
+  echo_info "fzf already installed, updating..."
+  cd ~/.fzf && git pull
+else
+  git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+fi
 ~/.fzf/install --all --no-bash --no-fish
 
 # Add .local/bin to PATH for the installers
@@ -77,8 +82,13 @@ curl -s https://ohmyposh.dev/install.sh | bash -s
 # Install Zinit
 echo_info "Installing Zinit..."
 ZINIT_HOME="${HOME}/.local/share/zinit/zinit.git"
-mkdir -p "$(dirname $ZINIT_HOME)"
-git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
+if [ -d "$ZINIT_HOME" ]; then
+  echo_info "Zinit already installed, updating..."
+  cd "$ZINIT_HOME" && git pull
+else
+  mkdir -p "$(dirname $ZINIT_HOME)"
+  git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
+fi
 
 # Create .zshrc
 echo_info "Creating .zshrc configuration..."
